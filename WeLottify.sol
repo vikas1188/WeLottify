@@ -122,7 +122,7 @@ contract WeLottify {
      * @param _secretToken if the pool is private, then leader has to provide a secret token to the participants to join his private pool
      * @return string giving information what have happened when someone tried to join a pool . Multiple scenario can happen.e.g. he may be the first person to join the pool. 
      * & may be the last. if last then we have to tackle those cases
-     * @modifiers some modifiers to keep a check that only valid data gets entered in the blockchain
+     * modifiers some modifiers to keep a check that only valid data gets entered in the blockchain
     */
     function JoinPool(uint256 _poolId, address _leaderAddress ,bool _isJoiningUnlistedPool, bytes32 _secretToken)
     condition(msg.value >= (extendedpools[_poolId].ticketCost))
@@ -202,7 +202,7 @@ contract WeLottify {
      * @param _imageURLonIPFS Uniques Hash of the file uploaded on the IPFS. this shall contain the ticket images' URL that were uploaded on IPFS
      * @param _poolId UniqueID of the pool for which the leader has to upload these ticket images
      * @return bool keeping the flag for successful operation. returning true.
-     * @modifiers some modifiers to keep a check that only valid data gets entered in the blockchain
+     * modifiers some modifiers to keep a check that only valid data gets entered in the blockchain
     */
     function uploadTicketImages(string _imageURLonIPFS, uint256 _poolId)
     condition(msg.sender == (pools[_poolId].leaderAddress))
@@ -218,7 +218,7 @@ contract WeLottify {
      * This can only be called after the draw date
      * @param _poolId UniqueID of the pool for which the leader has to upload these ticket images
      * @return bool keeping the flag for successful operation. returning true.
-     * @modifiers some modifiers to keep a check that only valid data gets entered in the blockchain. 
+     * modifiers some modifiers to keep a check that only valid data gets entered in the blockchain. 
     */
     function endPool(uint256 _poolId) 
     condition(msg.sender == (pools[_poolId].leaderAddress))
@@ -291,8 +291,8 @@ contract WeLottify {
     
     /**@dev Participant can withdraw from any game anytime. We shall return his money minus some fee for gas. as we can't pay for the gas. this may make the pool money less than the target amount.
      * @param _poolId UniqueID of the pool
-     * @param _participantAddress
-     * @modifiers Some modifiers to check that before getting out from the pool, some bare minimum conditions are met.
+     * @param _participantAddress Address of the participant who wants to withdraw his amount
+     * modifiers Some modifiers to check that before getting out from the pool, some bare minimum conditions are met.
      * @return string Help us identify what went wrong, again, if sends fail while sending the money manually.
     */
     function WithdrawParticipation(uint256 _poolId, address _participantAddress) 
